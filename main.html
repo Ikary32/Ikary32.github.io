@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smash Ultimate Arcade</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(160deg, #0a0a1f, #1a1a2e);
+      color: #ffe600;
+      font-family: 'Impact', 'Arial Black', sans-serif;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    
+    h1 {
+      font-size: 48px;
+      color: #ffcc00;
+      text-shadow: 3px 3px 6px #000;
+      margin-bottom: 40px;
+    }
+    
+    .arcade-machine {
+      width: 512px;
+      height: 512px;
+      background-image: url('images/arcade.jpg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .arcade-machine:hover {
+      transform: scale(1.05);
+      filter: brightness(1.2) drop-shadow(0 0 20px #ffcc00);
+    }
+    
+    .arcade-machine::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle, transparent 30%, rgba(255, 204, 0, 0.3) 60%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .arcade-machine:hover::before {
+      opacity: 1;
+      animation: coinEffect 1s ease-in-out;
+    }
+    
+    @keyframes coinEffect {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 0; }
+    }
+    
+    .start-text {
+      margin-top: 30px;
+      font-size: 24px;
+      color: #ffcc00;
+      text-shadow: 2px 2px 4px #000;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 0.7; }
+      50% { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+    
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      color: #ffcc00;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>SMASH ULTIMATE ARCADE</h1>
+  
+  <div class="arcade-machine" id="arcadeMachine"></div>
+  
+  <div class="start-text">Haz clic en la máquina para comenzar</div>
+  
+  <div class="footer">Super Smash Bros Ultimate - Ruleta de Personajes</div>
+
+  <script>
+    document.getElementById('arcadeMachine').addEventListener('click', function() {
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>

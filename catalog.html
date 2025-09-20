@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catálogo de Personajes - Smash Ultimate</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .catalog-container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+    
+    .catalog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .admin-mode {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .filters {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    
+    .filter-group select, .filter-group button {
+      padding: 8px 12px;
+      border-radius: 5px;
+      border: 1px solid #ffcc00;
+      background: #1a1a2e;
+      color: #ffcc00;
+    }
+    
+    .characters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .character-card {
+      background: #1a1a2e;
+      border: 2px solid #ffcc00;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .character-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+    }
+    
+    .character-card img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    
+    .character-name {
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffcc00;
+      margin-bottom: 8px;
+    }
+    
+    .character-details {
+      margin-bottom: 10px;
+    }
+    
+    .character-detail {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+    
+    .play-audio-btn {
+      padding: 8px 15px;
+      background: #ffcc00;
+      color: #1a1a2e;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+      width: 100%;
+    }
+    
+    .play-audio-btn:hover {
+      background: #ffaa00;
+    }
+    
+    .admin-controls {
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px solid #444;
+    }
+    
+    .admin-input {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 5px;
+      border: 1px solid #ffcc00;
+      border-radius: 3px;
+      background: #0f172a;
+      color: #ffcc00;
+    }
+    
+    .save-btn {
+      padding: 5px 10px;
+      background: #00cc00;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      width: 100%;
+    }
+    
+    .back-button {
+      padding: 10px 20px;
+      background: #ffcc00;
+      color: #1a1a2e;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    
+    .back-button:hover {
+      background: #ffaa00;
+    }
+  </style>
+</head>
+<body>
+  <!-- Fondo animado -->
+  <div class="animated-background"></div>
+  
+  <div class="catalog-container">
+    <button class="back-button" onclick="window.location.href='index.html'">← Volver a la Ruleta</button>
+    
+    <div class="catalog-header">
+      <h1>CATÁLOGO DE PERSONAJES</h1>
+      
+      <div class="admin-mode">
+        <label>
+          <input type="checkbox" id="adminToggle">
+          Modo Administrador
+        </label>
+      </div>
+    </div>
+    
+    <div class="filters">
+      <div class="filter-group">
+        <label>Ordenar por:</label>
+        <select id="sortBy">
+          <option value="name">Nombre</option>
+          <option value="tier">Tier</option>
+          <option value="score">PA (Puntos de Ataque)</option>
+          <option value="tournamentPoints">Puntos de Torneo</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label>Orden:</label>
+        <select id="sortOrder">
+          <option value="asc">Ascendente</option>
+          <option value="desc">Descendente</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label>Filtrar por Tier:</label>
+        <select id="tierFilter">
+          <option value="all">Todos</option>
+          <option value="S+">S+</option>
+          <option value="S">S</option>
+          <option value="S-">S-</option>
+          <option value="A+">A+</option>
+          <option value="A">A</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B">B</option>
+          <option value="B-">B-</option>
+          <option value="C+">C+</option>
+          <option value="C">C</option>
+          <option value="C-">C-</option>
+          <option value="D">D</option>
+          <option value="E">E</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label>Buscar por nombre:</label>
+        <input type="text" id="searchInput" placeholder="Nombre del personaje">
+      </div>
+    </div>
+    
+    <div id="charactersContainer" class="characters-grid">
+      <!-- Los personajes se cargarán aquí dinámicamente -->
+    </div>
+  </div>
+
+  <script>
+    // Cargar datos de personajes desde localStorage o usar datos por defecto
+    let charactersData = JSON.parse(localStorage.getItem('smashCharacters')) || {
+      "mario": {tier:"A+", score:7.5, tournamentPoints: 0}, 
+      "donkeykong": {tier:"C+", score:5, tournamentPoints: 0},
+      // ... (resto de los personajes, igual que en tu código original)
+      "sora": {tier:"A", score:7, tournamentPoints: 0}
+    };
+
+    // Guardar datos en localStorage si no existen
+    if (!localStorage.getItem('smashCharacters')) {
+      localStorage.setItem('smashCharacters', JSON.stringify(charactersData));
+    }
+
+    const adminToggle = document.getElementById('adminToggle');
+    const sortBy = document.getElementById('sortBy');
+    const sortOrder = document.getElementById('sortOrder');
+    const tierFilter = document.getElementById('tierFilter');
+    const searchInput = document.getElementById('searchInput');
+    const charactersContainer = document.getElementById('charactersContainer');
+    const narradorAudio = new Audio();
+
+    // Cargar y mostrar personajes
+    function loadCharacters() {
+      const sortField = sortBy.value;
+      const order = sortOrder.value;
+      const tierValue = tierFilter.value;
+      const searchText = searchInput.value.toLowerCase();
+      
+      // Convertir objeto a array para ordenar
+      let charactersArray = Object.entries(charactersData);
+      
+      // Aplicar filtros
+      if (tierValue !== 'all') {
+        charactersArray = charactersArray.filter(([name, data]) => data.tier === tierValue);
+      }
+      
+      if (searchText) {
+        charactersArray = charactersArray.filter(([name, data]) => 
+          name.toLowerCase().includes(searchText)
+        );
+      }
+      
+      // Ordenar
+      charactersArray.sort((a, b) => {
+        let valueA, valueB;
+        
+        if (sortField === 'name') {
+          valueA = a[0];
+          valueB = b[0];
+        } else {
+          valueA = a[1][sortField];
+          valueB = b[1][sortField];
+          
+          // Convertir a número si es posible
+          if (!isNaN(valueA) && !isNaN(valueB)) {
+            valueA = parseFloat(valueA);
+            valueB = parseFloat(valueB);
+          }
+        }
+        
+        if (order === 'asc') {
+          return valueA > valueB ? 1 : -1;
+        } else {
+          return valueA < valueB ? 1 : -1;
+        }
+      });
+      
+      // Mostrar personajes
+      charactersContainer.innerHTML = '';
+      
+      charactersArray.forEach(([name, data]) => {
+        const characterCard = document.createElement('div');
+        characterCard.className = 'character-card';
+        
+        characterCard.innerHTML = `
+          <img src="images/${name}.png" alt="${name}" onerror="this.style.opacity='0.4'">
+          <div class="character-name">${name.toUpperCase()}</div>
+          <div class="character-details">
+            <div class="character-detail"><span>Tier:</span> <span>${data.tier}</span></div>
+            <div class="character-detail"><span>PA:</span> <span>${data.score}</span></div>
+            <div class="character-detail"><span>Puntos Torneo:</span> <span>⭐${data.tournamentPoints}</span></div>
+          </div>
+          <button class="play-audio-btn" onclick="playCharacterAudio('${name}')">▶️ Reproducir Audio</button>
+          ${adminToggle.checked ? `
+            <div class="admin-controls">
+              <input type="text" class="admin-input" value="${data.tier}" id="tier-${name}" placeholder="Tier">
+              <input type="number" step="0.1" class="admin-input" value="${data.score}" id="score-${name}" placeholder="PA">
+              <input type="number" class="admin-input" value="${data.tournamentPoints}" id="points-${name}" placeholder="Puntos">
+              <button class="save-btn" onclick="saveCharacterChanges('${name}')">💾 Guardar</button>
+            </div>
+          ` : ''}
+        `;
+        
+        charactersContainer.appendChild(characterCard);
+      });
+    }
+
+    // Reproducir audio del personaje
+    function playCharacterAudio(characterName) {
+      narradorAudio.src = `audio/${characterName}.mp3`;
+      narradorAudio.play().catch(e => {
+        console.log("Error reproduciendo audio:", e);
+        alert("No se pudo reproducir el audio. Asegúrate de que el archivo existe.");
+      });
+    }
+
+    // Guardar cambios en modo administrador
+    function saveCharacterChanges(characterName) {
+      const newTier = document.getElementById(`tier-${characterName}`).value;
+      const newScore = parseFloat(document.getElementById(`score-${characterName}`).value);
+      const newPoints = parseInt(document.getElementById(`points-${characterName}`).value);
+      
+      // Validar datos
+      if (!newTier || isNaN(newScore) || isNaN(newPoints)) {
+        alert("Por favor, ingresa valores válidos.");
+        return;
+      }
+      
+      // Actualizar datos
+      charactersData[characterName] = {
+        tier: newTier,
+        score: newScore,
+        tournamentPoints: newPoints
+      };
+      
+      // Guardar en localStorage
+      localStorage.setItem('smashCharacters', JSON.stringify(charactersData));
+      
+      alert("Cambios guardados correctamente.");
+      loadCharacters(); // Recargar para ver cambios
+    }
+
+    // Event listeners
+    adminToggle.addEventListener('change', loadCharacters);
+    sortBy.addEventListener('change', loadCharacters);
+    sortOrder.addEventListener('change', loadCharacters);
+    tierFilter.addEventListener('change', loadCharacters);
+    searchInput.addEventListener('input', loadCharacters);
+
+    // Cargar personajes al iniciar
+    loadCharacters();
+  </script>
+</body>
+</html>

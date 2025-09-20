@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ruleta Smash Ultimate</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Fondo animado -->
+  <div class="animated-background"></div>
+  
+  <!-- Menú de configuración en esquina superior izquierda -->
+  <div class="config-menu left">
+    <button id="configToggle">☰</button>
+    <div class="config-content">
+      <button id="toggleMusic">🔇 Silenciar Música</button>
+      <button id="toggleNarration">🔇 Silenciar Narrador</button>
+      <button id="toggleRandomAudio">🔇 Silenciar Audio Aleatorio</button>
+      <button id="resetPage">🔄 Reiniciar</button>
+    </div>
+  </div>
+  
+  <h1>RULETA DE PERSONAJES – SMASH ULTIMATE</h1>
+
+  <div class="main-container">
+    <!-- Botón de catálogo en el borde izquierdo -->
+    <div class="catalog-button-left">
+      <button id="catalogBtn" class="catalog-button">📋</button>
+    </div>
+
+    <!-- Ruleta -->
+    <div class="roulette-wrapper">
+      <div class="roulette-container">
+        <div class="roulette" id="roulette"></div>
+        <div class="arrow-indicator"></div>
+      </div>
+      <button id="spin" class="premium-spin">𒅒</button>
+    </div>
+
+    <!-- Historial lateral derecho -->
+    <div class="history-wrapper">
+      <h2>HISTORIAL</h2>
+      <div id="history"></div>
+    </div>
+  </div>
+
+  <!-- Configuración de equipos abajo -->
+  <div class="teams-wrapper">
+    <h2>EQUIPOS</h2>
+    <div class="team-config">
+      <div class="config-group">
+        <label for="numTeams">Número de equipos:</label>
+        <input type="number" id="numTeams" value="2" min="2" max="8" />
+      </div>
+      
+      <div class="config-group">
+        <label for="teamSize">Tamaño de los equipos:</label>
+        <input type="number" id="teamSize" value="3" min="1" max="10" />
+      </div>
+      
+      <button id="generateTeams">CREAR EQUIPOS</button>
+      
+      <div class="config-group checkbox">
+        <input type="checkbox" id="enableReroll" checked>
+        <label for="enableReroll">Habilitar Reroll (1 por equipo)</label>
+      </div>
+
+      <div class="assign-mode">
+        <div class="config-group radio">
+          <input type="radio" id="assignRound" name="assignMode" value="round" checked>
+          <label for="assignRound">Un personaje por equipo en turnos</label>
+        </div>
+        <div class="config-group radio">
+          <input type="radio" id="assignFull" name="assignMode" value="full">
+          <label for="assignFull">Completar un equipo antes de pasar al siguiente</label>
+        </div>
+      </div>
+    </div>
+
+    <div id="teams"></div>
+  </div>
+
+  <!-- Botón MATCH -->
+  <div class="match-button-container">
+    <button id="matchButton" class="match-button" disabled>MATCH</button>
+  </div>
+
+  <!-- Selección de equipo ganador -->
+  <div id="winnerSelection" class="winner-selection hidden">
+    <h2>¿QUÉ EQUIPO GANÓ?</h2>
+    <div class="team-buttons">
+      <!-- Los botones de equipos se generarán dinámicamente -->
+    </div>
+    <button id="cancelWinnerSelection" class="cancel-btn">Cancelar</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
