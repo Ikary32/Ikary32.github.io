@@ -656,7 +656,7 @@ function playCharacterAudios(members) {
 function playRandomAudioSegment() {
   if (!longAudioLoaded || randomAudioMuted) return;
   const total = longAudio.duration || 720;
-  const seg = 6;
+  const seg = 3;
   const maxStart = Math.max(0, total - seg);
   const start = Math.random() * maxStart;
   longAudio.currentTime = start;
