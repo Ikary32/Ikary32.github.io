@@ -1,91 +1,94 @@
-// --- datos de personajes con tier, puntuación y puntos de torneo ---
-const charactersData = JSON.parse(localStorage.getItem('smashCharacters')) || {
-    "mario": {tier:"A+", score:7.5, tournamentPoints: 0}, 
-    "donkeykong": {tier:"C+", score:5, tournamentPoints: 0},
-    "link": {tier:"C-", score:4.5, tournamentPoints: 0}, 
-    "samus": {tier:"S+", score:10, tournamentPoints: 0},
-    "darksamus": {tier:"S+", score:10, tournamentPoints: 0}, 
-    "yoshi": {tier:"A", score:7, tournamentPoints: 0},
-    "kirby": {tier:"C+", score:5, tournamentPoints: 0}, 
-    "fox": {tier:"S-", score:8, tournamentPoints: 0},
-    "pikachu": {tier:"S-", score:8, tournamentPoints: 0}, 
-    "luigi": {tier:"S-", score:8, tournamentPoints: 0},
-    "ness": {tier:"B-", score:5.5, tournamentPoints: 0}, 
-    "captainfalcon": {tier:"B+", score:6, tournamentPoints: 0},
-    "jigglypuff": {tier:"C-", score:4.5, tournamentPoints: 0}, 
-    "peach": {tier:"A", score:7, tournamentPoints: 0},
-    "daisy": {tier:"A", score:7, tournamentPoints: 0}, 
-    "bowser": {tier:"C+", score:5, tournamentPoints: 0},
-    "iceclimbers": {tier:"B-", score:5.5, tournamentPoints: 0}, 
-    "sheik": {tier:"B-", score:5.5, tournamentPoints: 0},
-    "zelda": {tier:"D", score:4, tournamentPoints: 0}, 
-    "drmario": {tier:"C-", score:4.5, tournamentPoints: 0},
-    "pichu": {tier:"B-", score:5.5, tournamentPoints: 0}, 
-    "falco": {tier:"A", score:7, tournamentPoints: 0},
-    "marth": {tier:"C-", score:4.5, tournamentPoints: 0}, 
-    "lucina": {tier:"A-", score:6.5, tournamentPoints: 0},
-    "younglink": {tier:"B+", score:6, tournamentPoints: 0}, 
-    "ganondorf": {tier:"B-", score:5.5, tournamentPoints: 0},
-    "mewtwo": {tier:"C+", score:5, tournamentPoints: 0}, 
-    "roy": {tier:"A+", score:7.5, tournamentPoints: 0},
-    "chrom": {tier:"C+", score:5, tournamentPoints: 0}, 
-    "mrgamewatch": {tier:"S", score:9, tournamentPoints: 0},
-    "metaknight": {tier:"B-", score:5.5, tournamentPoints: 0}, 
-    "pit": {tier:"B+", score:6, tournamentPoints: 0},
-    "darkpit": {tier:"B+", score:6, tournamentPoints: 0}, 
-    "samuszero": {tier:"A-", score:6.5, tournamentPoints: 0},
-    "wario": {tier:"A", score:7, tournamentPoints: 0}, 
-    "snake": {tier:"S+", score:10, tournamentPoints: 0},
-    "ike": {tier:"D", score:4, tournamentPoints: 0}, 
-    "pokemontrainer": {tier:"A-", score:6.5, tournamentPoints: 0},
-    "diddykong": {tier:"S-", score:8, tournamentPoints: 0}, 
-    "lucas": {tier:"C+", score:5, tournamentPoints: 0},
-    "sonic": {tier:"S", score:9, tournamentPoints: 0}, 
-    "kingdedede": {tier:"D", score:4, tournamentPoints: 0},
-    "olimar": {tier:"A", score:7, tournamentPoints: 0}, 
-    "lucario": {tier:"C+", score:5, tournamentPoints: 0},
-    "rob": {tier:"S", score:9, tournamentPoints: 0}, 
-    "toonlink": {tier:"A-", score:6.5, tournamentPoints: 0},
-    "wolf": {tier:"A", score:7, tournamentPoints: 0}, 
-    "villager": {tier:"D", score:4, tournamentPoints: 0},
-    "megaman": {tier:"B-", score:5.5, tournamentPoints: 0}, 
-    "wiifittrainer": {tier:"C+", score:5, tournamentPoints: 0},
-    "rosalinaluma": {tier:"B+", score:6, tournamentPoints: 0}, 
-    "littlemac": {tier:"E", score:3, tournamentPoints: 0},
-    "greninja": {tier:"A-", score:6.5, tournamentPoints: 0}, 
-    "mii": {tier:"A-", score:6.5, tournamentPoints: 0},
-    "palutena": {tier:"A+", score:7.5, tournamentPoints: 0}, 
-    "pacman": {tier:"A-", score:6.5, tournamentPoints: 0},
-    "robin": {tier:"C+", score:5, tournamentPoints: 0}, 
-    "shulk": {tier:"A-", score:6.5, tournamentPoints: 0},
-    "bowserjr": {tier:"C+", score:5, tournamentPoints: 0}, 
-    "duckhunt": {tier:"C-", score:4.5, tournamentPoints: 0},
-    "ryu": {tier:"A-", score:6.5, tournamentPoints: 0}, 
-    "ken": {tier:"B+", score:6, tournamentPoints: 0}, 
-    "cloud": {tier:"A+", score:7.5, tournamentPoints: 0},
-    "corrin": {tier:"A", score:7, tournamentPoints: 0}, 
-    "bayonetta": {tier:"S", score:9, tournamentPoints: 0},
-    "inkling": {tier:"B-", score:5.5, tournamentPoints: 0}, 
-    "ridley": {tier:"A+", score:7.5, tournamentPoints: 0},
-    "simon": {tier:"D", score:4, tournamentPoints: 0}, 
-    "richter": {tier:"D", score:4, tournamentPoints: 0}, 
-    "kingkrool": {tier:"D", score:4, tournamentPoints: 0},
-    "isabelle": {tier:"C-", score:4.5, tournamentPoints: 0}, 
-    "incineroar": {tier:"A+", score:7.5, tournamentPoints: 0},
-    "piranhaplant": {tier:"C-", score:4.5, tournamentPoints: 0}, 
-    "joker": {tier:"S-", score:8, tournamentPoints: 0},
-    "hero": {tier:"A-", score:6.5, tournamentPoints: 0}, 
-    "banjokazooie": {tier:"C+", score:5, tournamentPoints: 0},
-    "terry": {tier:"A+", score:7.5, tournamentPoints: 0}, 
-    "byleth": {tier:"A+", score:7.5, tournamentPoints: 0}, 
-    "minmin": {tier:"S-", score:8, tournamentPoints: 0},
-    "steve": {tier:"S+", score:10, tournamentPoints: 0}, 
-    "sephiroth": {tier:"A+", score:7.5, tournamentPoints: 0},
-    "pyraymythra": {tier:"S", score:9, tournamentPoints: 0}, 
-    "kazuya": {tier:"S+", score:10, tournamentPoints: 0}, 
-    "sora": {tier:"A", score:7, tournamentPoints: 0}
-};
+// =======================================
+// script.js - Versión corregida y completa
+// =======================================
 
+// --- datos de personajes (carga desde localStorage si existe) ---
+const charactersData = JSON.parse(localStorage.getItem('smashCharacters')) || {
+  "mario": {tier:"A+", score:7.5, tournamentPoints: 0},
+  "donkeykong": {tier:"C+", score:5, tournamentPoints: 0},
+  "link": {tier:"C-", score:4.5, tournamentPoints: 0},
+  "samus": {tier:"S+", score:10, tournamentPoints: 0},
+  "darksamus": {tier:"S+", score:10, tournamentPoints: 0},
+  "yoshi": {tier:"A", score:7, tournamentPoints: 0},
+  "kirby": {tier:"C+", score:5, tournamentPoints: 0},
+  "fox": {tier:"S-", score:8, tournamentPoints: 0},
+  "pikachu": {tier:"S-", score:8, tournamentPoints: 0},
+  "luigi": {tier:"S-", score:8, tournamentPoints: 0},
+  "ness": {tier:"B-", score:5.5, tournamentPoints: 0},
+  "captainfalcon": {tier:"B+", score:6, tournamentPoints: 0},
+  "jigglypuff": {tier:"C-", score:4.5, tournamentPoints: 0},
+  "peach": {tier:"A", score:7, tournamentPoints: 0},
+  "daisy": {tier:"A", score:7, tournamentPoints: 0},
+  "bowser": {tier:"C+", score:5, tournamentPoints: 0},
+  "iceclimbers": {tier:"B-", score:5.5, tournamentPoints: 0},
+  "sheik": {tier:"B-", score:5.5, tournamentPoints: 0},
+  "zelda": {tier:"D", score:4, tournamentPoints: 0},
+  "drmario": {tier:"C-", score:4.5, tournamentPoints: 0},
+  "pichu": {tier:"B-", score:5.5, tournamentPoints: 0},
+  "falco": {tier:"A", score:7, tournamentPoints: 0},
+  "marth": {tier:"C-", score:4.5, tournamentPoints: 0},
+  "lucina": {tier:"A-", score:6.5, tournamentPoints: 0},
+  "younglink": {tier:"B+", score:6, tournamentPoints: 0},
+  "ganondorf": {tier:"B-", score:5.5, tournamentPoints: 0},
+  "mewtwo": {tier:"C+", score:5, tournamentPoints: 0},
+  "roy": {tier:"A+", score:7.5, tournamentPoints: 0},
+  "chrom": {tier:"C+", score:5, tournamentPoints: 0},
+  "mrgamewatch": {tier:"S", score:9, tournamentPoints: 0},
+  "metaknight": {tier:"B-", score:5.5, tournamentPoints: 0},
+  "pit": {tier:"B+", score:6, tournamentPoints: 0},
+  "darkpit": {tier:"B+", score:6, tournamentPoints: 0},
+  "samuszero": {tier:"A-", score:6.5, tournamentPoints: 0},
+  "wario": {tier:"A", score:7, tournamentPoints: 0},
+  "snake": {tier:"S+", score:10, tournamentPoints: 0},
+  "ike": {tier:"D", score:4, tournamentPoints: 0},
+  "pokemontrainer": {tier:"A-", score:6.5, tournamentPoints: 0},
+  "diddykong": {tier:"S-", score:8, tournamentPoints: 0},
+  "lucas": {tier:"C+", score:5, tournamentPoints: 0},
+  "sonic": {tier:"S", score:9, tournamentPoints: 0},
+  "kingdedede": {tier:"D", score:4, tournamentPoints: 0},
+  "olimar": {tier:"A", score:7, tournamentPoints: 0},
+  "lucario": {tier:"C+", score:5, tournamentPoints: 0},
+  "rob": {tier:"S", score:9, tournamentPoints: 0},
+  "toonlink": {tier:"A-", score:6.5, tournamentPoints: 0},
+  "wolf": {tier:"A", score:7, tournamentPoints: 0},
+  "villager": {tier:"D", score:4, tournamentPoints: 0},
+  "megaman": {tier:"B-", score:5.5, tournamentPoints: 0},
+  "wiifittrainer": {tier:"C+", score:5, tournamentPoints: 0},
+  "rosalinaluma": {tier:"B+", score:6, tournamentPoints: 0},
+  "littlemac": {tier:"E", score:3, tournamentPoints: 0},
+  "greninja": {tier:"A-", score:6.5, tournamentPoints: 0},
+  "mii": {tier:"A-", score:6.5, tournamentPoints: 0},
+  "palutena": {tier:"A+", score:7.5, tournamentPoints: 0},
+  "pacman": {tier:"A-", score:6.5, tournamentPoints: 0},
+  "robin": {tier:"C+", score:5, tournamentPoints: 0},
+  "shulk": {tier:"A-", score:6.5, tournamentPoints: 0},
+  "bowserjr": {tier:"C+", score:5, tournamentPoints: 0},
+  "duckhunt": {tier:"C-", score:4.5, tournamentPoints: 0},
+  "ryu": {tier:"A-", score:6.5, tournamentPoints: 0},
+  "ken": {tier:"B+", score:6, tournamentPoints: 0},
+  "cloud": {tier:"A+", score:7.5, tournamentPoints: 0},
+  "corrin": {tier:"A", score:7, tournamentPoints: 0},
+  "bayonetta": {tier:"S", score:9, tournamentPoints: 0},
+  "inkling": {tier:"B-", score:5.5, tournamentPoints: 0},
+  "ridley": {tier:"A+", score:7.5, tournamentPoints: 0},
+  "simon": {tier:"D", score:4, tournamentPoints: 0},
+  "richter": {tier:"D", score:4, tournamentPoints: 0},
+  "kingkrool": {tier:"D", score:4, tournamentPoints: 0},
+  "isabelle": {tier:"C-", score:4.5, tournamentPoints: 0},
+  "incineroar": {tier:"A+", score:7.5, tournamentPoints: 0},
+  "piranhaplant": {tier:"C-", score:4.5, tournamentPoints: 0},
+  "joker": {tier:"S-", score:8, tournamentPoints: 0},
+  "hero": {tier:"A-", score:6.5, tournamentPoints: 0},
+  "banjokazooie": {tier:"C+", score:5, tournamentPoints: 0},
+  "terry": {tier:"A+", score:7.5, tournamentPoints: 0},
+  "byleth": {tier:"A+", score:7.5, tournamentPoints: 0},
+  "minmin": {tier:"S-", score:8, tournamentPoints: 0},
+  "steve": {tier:"S+", score:10, tournamentPoints: 0},
+  "sephiroth": {tier:"A+", score:7.5, tournamentPoints: 0},
+  "pyraymythra": {tier:"S", score:9, tournamentPoints: 0},
+  "kazuya": {tier:"S+", score:10, tournamentPoints: 0},
+  "sora": {tier:"A", score:7, tournamentPoints: 0}
+};
 const characters = Object.keys(charactersData);
 
 // --- refs DOM ---
@@ -104,7 +107,7 @@ const teamButtons = document.querySelector(".team-buttons");
 const cancelWinnerSelection = document.getElementById("cancelWinnerSelection");
 const catalogBtn = document.getElementById("catalogBtn");
 
-// --- elementos del menú de configuración ---
+// config
 const configToggle = document.getElementById("configToggle");
 const configContent = document.querySelector(".config-content");
 const toggleMusicBtn = document.getElementById("toggleMusic");
@@ -112,55 +115,58 @@ const toggleNarrationBtn = document.getElementById("toggleNarration");
 const toggleRandomAudioBtn = document.getElementById("toggleRandomAudio");
 const resetPageBtn = document.getElementById("resetPage");
 
+// audio & UI state
 const itemWidth = 136;
 let currentOffset = 0;
 let animating = false;
-let teams = [];
+let teams = []; // tendrá objetos { name, members: [{character, pending, locked}], rerollAvailable }
 let currentTeamIndex = 0;
 let currentSlotIndex = 0;
-let waitingForConfirmation = false;
+let waitingForConfirmation = false; // true cuando hay un slot pendiente por confirmar/re-roll
 let allTeamsComplete = false;
 let musicMuted = false;
 let narrationMuted = false;
 let randomAudioMuted = false;
 
-// --- audio narrador ---
+// audios
 const narradorAudio = new Audio();
-
-// --- música de fondo ---
 const backgroundMusic = new Audio('audio/fondo.mp3');
 backgroundMusic.loop = true;
 backgroundMusic.volume = 0.6;
-
-// --- audio largo (12 minutos) para reproducción aleatoria ---
 const longAudio = new Audio('audio/larga_duracion.mp3');
 let longAudioLoaded = false;
-
-// Cargar el audio largo
-longAudio.addEventListener('canplaythrough', () => {
-  longAudioLoaded = true;
-  console.log("Audio largo cargado y listo para usar");
-});
-
-longAudio.addEventListener('error', (e) => {
-  console.error("Error cargando el audio largo:", e);
-});
+longAudio.addEventListener('canplaythrough', () => { longAudioLoaded = true; });
+longAudio.addEventListener('error', (e)=> console.error("Error audio largo:", e));
 
 let musicStarted = false;
 function startMusic() {
   if (!musicStarted && !musicMuted) {
-    backgroundMusic.play().catch(e => console.log("Error reproduciendo música:", e));
+    backgroundMusic.play().catch(()=>{});
     musicStarted = true;
     document.removeEventListener("click", startMusic);
   }
 }
 document.addEventListener("click", startMusic);
 
-// --- render carrusel ---
+// ------------------------
+// Helper: Persistencia
+// ------------------------
+function saveCharacters() {
+  localStorage.setItem('smashCharacters', JSON.stringify(charactersData));
+}
+function saveAllState() {
+  saveCharacters();
+  // no guardo teams/historial por simplicidad (puedes añadir si quieres)
+}
+
+// ------------------------
+// Render: carrusel
+// ------------------------
 function renderCarousel() {
+  if (!roulette) return;
   roulette.innerHTML = "";
   const repeat = 5;
-  for (let r = 0; r < repeat; r++) {
+  for (let r=0; r<repeat; r++) {
     characters.forEach(name => {
       const div = document.createElement("div");
       div.className = "character";
@@ -168,21 +174,16 @@ function renderCarousel() {
       img.src = `images/${name}.png`;
       img.alt = name;
       img.onerror = () => { img.style.opacity = "0.4"; };
-      
       const p = document.createElement("p");
       p.textContent = name.toUpperCase() + " ";
-      
       const tierSpan = document.createElement("span");
       tierSpan.className = "tier-text";
       tierSpan.textContent = charactersData[name].tier;
-      p.appendChild(tierSpan);
-      
-      // Mostrar puntos de torneo (siempre, incluso cuando son 0)
       const pointsSpan = document.createElement("span");
       pointsSpan.className = "tournament-points";
-      pointsSpan.textContent = ` ⭐${charactersData[name].tournamentPoints}`;
+      pointsSpan.textContent = ` ⭐${charactersData[name].tournamentPoints}`; // siempre mostrar, incluso 0
+      p.appendChild(tierSpan);
       p.appendChild(pointsSpan);
-      
       div.appendChild(img);
       div.appendChild(p);
       roulette.appendChild(div);
@@ -191,38 +192,254 @@ function renderCarousel() {
 }
 renderCarousel();
 
-// --- función para reproducir 6 segundos aleatorios del audio largo ---
-function playRandomAudioSegment() {
-  if (!longAudioLoaded || randomAudioMuted) {
-    return;
-  }
-  
-  // Duración total del audio en segundos (12 minutos = 720 segundos)
-  const totalDuration = 720;
-  const segmentDuration = 6; // 6 segundos
-  
-  // Generar un punto de inicio aleatorio (asegurando que no exceda el límite)
-  const maxStartTime = totalDuration - segmentDuration;
-  const randomStartTime = Math.floor(Math.random() * maxStartTime);
-  
-  console.log(`Reproduciendo audio aleatorio desde: ${randomStartTime}s hasta: ${randomStartTime + segmentDuration}s`);
-  
-  // Configurar el audio para reproducir el segmento
-  longAudio.currentTime = randomStartTime;
-  longAudio.volume = 0.7;
-  
-  // Reproducir el audio
-  longAudio.play().catch(e => {
-    console.error("Error reproduciendo el audio aleatorio:", e);
+// ------------------------
+// Historial (solo confirmados)
+// ------------------------
+let historyList = []; // guardamos solo los confirmados
+function pushHistory(name) {
+  historyList.unshift(name);
+  renderHistory();
+}
+function renderHistory() {
+  if (!historyDiv) return;
+  historyDiv.innerHTML = "";
+  historyList.forEach(name => {
+    const div = document.createElement("div");
+    div.className = "history-item";
+    const img = document.createElement("img");
+    img.src = `images/${name}.png`;
+    img.alt = name;
+    const p = document.createElement("p");
+    p.textContent = name.toUpperCase();
+    const tierSpan = document.createElement("span");
+    tierSpan.className = "tier-text";
+    tierSpan.textContent = charactersData[name].tier;
+    const pointsSpan = document.createElement("span");
+    pointsSpan.className = "tournament-points";
+    pointsSpan.textContent = ` ⭐${charactersData[name].tournamentPoints}`;
+    p.appendChild(pointsSpan);
+    p.appendChild(document.createTextNode(" "));
+    p.appendChild(tierSpan);
+    div.appendChild(img);
+    div.appendChild(p);
+    historyDiv.appendChild(div);
   });
-  
-  // Detener después de 6 segundos
-  setTimeout(() => {
-    longAudio.pause();
-  }, segmentDuration * 1000);
 }
 
-// --- spin ---
+// ------------------------
+// Crear equipos
+// ------------------------
+function createTeams(size) {
+  const numTeams = parseInt(numTeamsInput.value, 10) || 2;
+  teams = [];
+  for (let i = 0; i < numTeams; i++) {
+    const members = [];
+    for (let s = 0; s < size; s++) {
+      members.push({
+        character: null,   // nombre del personaje asignado (string) o null
+        pending: false,    // true justo después del spin antes de confirmar/reroll
+        locked: false      // true cuando confirmado o auto-confirmado por reroll
+      });
+    }
+    teams.push({
+      name: `Equipo ${i+1}`,
+      members,
+      rerollAvailable: true // 1 por equipo
+    });
+  }
+  currentTeamIndex = 0;
+  currentSlotIndex = 0;
+  waitingForConfirmation = false;
+  allTeamsComplete = false;
+  spinBtn.disabled = false;
+  matchButton.disabled = true;
+  winnerSelection.classList.add("hidden");
+  historyList = [];
+  renderTeams();
+  renderHistory();
+}
+
+// ------------------------
+// Render equipos
+// ------------------------
+function calculateTeamScore(team) {
+  return team.members.reduce((acc, m) => {
+    if (!m.character) return acc;
+    return acc + (charactersData[m.character]?.score || 0);
+  }, 0);
+}
+function renderTeams() {
+  if (!teamsDiv) return;
+  teamsDiv.innerHTML = "";
+  teams.forEach((team, ti) => {
+    const div = document.createElement("div");
+    div.className = "team";
+    const h3 = document.createElement("h3");
+    h3.textContent = team.name;
+    div.appendChild(h3);
+
+    const totalScore = document.createElement("div");
+    totalScore.className = "total-score";
+    totalScore.textContent = `PA: ${calculateTeamScore(team).toFixed(1)}`;
+    div.appendChild(totalScore);
+
+    team.members.forEach((slot, mi) => {
+      const slotDiv = document.createElement("div");
+      slotDiv.className = "slot";
+      if (slot.character) {
+        const img = document.createElement("img");
+        img.src = `images/${slot.character}.png`;
+        img.alt = slot.character;
+        slotDiv.appendChild(img);
+
+        const infoDiv = document.createElement("div");
+        infoDiv.className = "character-info";
+
+        const nameSpan = document.createElement("div");
+        nameSpan.className = "character-name";
+        nameSpan.textContent = slot.character.toUpperCase();
+        infoDiv.appendChild(nameSpan);
+
+        const detailsDiv = document.createElement("div");
+        detailsDiv.className = "character-details";
+
+        const tierEl = document.createElement("div");
+        tierEl.className = "character-tier";
+        tierEl.innerHTML = `Tier: <span>${charactersData[slot.character].tier}</span>`;
+
+        const scoreEl = document.createElement("div");
+        scoreEl.className = "character-score";
+        scoreEl.innerHTML = `PA: <span>${charactersData[slot.character].score}</span>`;
+
+        detailsDiv.appendChild(tierEl);
+        detailsDiv.appendChild(scoreEl);
+
+        // puntos torneo (siempre se muestran)
+        const pointsDiv = document.createElement("div");
+        pointsDiv.className = "tournament-points";
+        pointsDiv.textContent = `Puntos de Torneo: ⭐${charactersData[slot.character].tournamentPoints}`;
+        infoDiv.appendChild(detailsDiv);
+        infoDiv.appendChild(pointsDiv);
+
+        // Si el slot está pendiente y no está locked, mostrar botones
+        if (slot.pending && !slot.locked) {
+          // Confirmar
+          const confirmBtn = document.createElement("button");
+          confirmBtn.textContent = "✔️ Confirmar";
+          confirmBtn.onclick = () => confirmAssignment(ti, mi);
+          infoDiv.appendChild(confirmBtn);
+
+          // Reroll (si el equipo todavía tiene reroll disponible)
+          if (rerollToggle && rerollToggle.checked && team.rerollAvailable) {
+            const rerollBtn = document.createElement("button");
+            rerollBtn.textContent = "🔄 Reroll";
+            rerollBtn.onclick = () => rerollMember(ti, mi);
+            infoDiv.appendChild(rerollBtn);
+          }
+        } else {
+          // Si está locked, mostrar etiqueta
+          if (slot.locked) {
+            const lockedEl = document.createElement("div");
+            lockedEl.style.fontSize = "12px";
+            lockedEl.style.color = "#9e9e9e";
+            lockedEl.textContent = slot.pending ? "Pendiente (bloqueado)" : "Fijo";
+            infoDiv.appendChild(lockedEl);
+          }
+        }
+
+        slotDiv.appendChild(infoDiv);
+      } else {
+        const empty = document.createElement("div");
+        empty.className = "character-empty";
+        empty.textContent = "Vacío";
+        slotDiv.appendChild(empty);
+      }
+      div.appendChild(slotDiv);
+    });
+
+    teamsDiv.appendChild(div);
+  });
+
+  checkAllTeamsComplete();
+}
+
+// ------------------------
+// Avanzar puntero al siguiente slot libre (skip locked)
+// Devuelve true si avanzó a un slot válido, false si no hay más slots.
+// ------------------------
+function findNextAvailableSlot() {
+  const teamSize = teams.length ? teams[0].members.length : 0;
+  let iterations = 0;
+  const maxIterations = teams.length * teamSize + 5;
+
+  while (iterations < maxIterations) {
+    if (currentTeamIndex >= teams.length) return false;
+    const slot = teams[currentTeamIndex].members[currentSlotIndex];
+    // si slot está vacío y no locked => es válido
+    if (!slot.character && !slot.locked) return true;
+    // si no vacío but not locked? shouldn't happen, but skip
+    // mover puntero al siguiente
+    // Avanzar en modo round/full de acuerdo a radio
+    const mode = [...assignModeRadios].find(r=>r.checked)?.value || "round";
+    if (mode === "round") {
+      currentTeamIndex = (currentTeamIndex + 1) % teams.length;
+      if (currentTeamIndex === 0) currentSlotIndex++;
+    } else { // full
+      currentSlotIndex++;
+      if (currentSlotIndex >= teamSize) {
+        currentSlotIndex = 0;
+        currentTeamIndex++;
+      }
+    }
+    iterations++;
+  }
+  return false;
+}
+
+// ------------------------
+// Asignar ganador del spin al slot actual (pendiente)
+// ------------------------
+function assignToTeamPending(name) {
+  if (!teams.length) {
+    pushHistory(name); // sin teams, solo historial
+    spinBtn.disabled = false;
+    return;
+  }
+
+  // Buscar un slot válido (skip locked)
+  const hasSlot = findNextAvailableSlot();
+  if (!hasSlot) {
+    // ya no hay slots disponibles
+    checkAllTeamsComplete();
+    spinBtn.disabled = false;
+    return;
+  }
+
+  // Asignar al slot actual
+  const team = teams[currentTeamIndex];
+  const slot = team.members[currentSlotIndex];
+
+  // Si de alguna manera está locked, no debemos asignar
+  if (slot.locked) {
+    spinBtn.disabled = false;
+    return;
+  }
+
+  slot.character = name;
+  slot.pending = true; // necesita confirmación o reroll
+  waitingForConfirmation = true;
+
+  // Mostrar UI: botones (confirm/reroll) aparecerán en renderTeams
+  renderTeams();
+
+  // Si equipo no puede usar reroll (desmarcado) y no se desea confirmar manualmente,
+  // entonces dejamos que el usuario confirme. Por seguridad, deshabilitamos spin
+  spinBtn.disabled = true;
+}
+
+// ------------------------
+// Spin (mantengo tu animación, pero llamo a assignToTeamPending al final)
+// ------------------------
 function spin() {
   if (animating || waitingForConfirmation || allTeamsComplete) return;
   animating = true;
@@ -254,21 +471,16 @@ function spin() {
       const winner = characters[randomIndex];
       const allCharacters = document.querySelectorAll(".character");
       const winnerDiv = allCharacters[randomIndex + characters.length * 2];
+      if (winnerDiv) winnerDiv.classList.add("active");
 
-      winnerDiv.classList.add("active");
-
-      // --- reproducir audio narrador ---
+      // reproducir narrador si corresponde
       if (!narrationMuted) {
         narradorAudio.src = `audio/${winner}.mp3`;
-        narradorAudio.play().catch(e => console.log("Error reproduciendo audio:", e));
+        narradorAudio.play().catch(()=>{});
       }
 
-      if (!teams.length) {
-        pushHistory(winner);
-        spinBtn.disabled = false;
-      } else {
-        assignToTeamPending(winner);
-      }
+      // asignar a equipo o pushHistory si no hay equipos
+      assignToTeamPending(winner);
 
       animating = false;
     }
@@ -276,114 +488,122 @@ function spin() {
   requestAnimationFrame(animate);
 }
 
-// --- eventos ---
-generateTeamsBtn.addEventListener("click", () => {
-  const size = parseInt(teamSizeInput.value, 10) || 3;
-  createTeams(size);
-  // Reproducir audio aleatorio al crear equipos
+// ------------------------
+// Reroll: reemplaza y bloquea el slot (auto-confirm), consume reroll del equipo y avanza
+// ------------------------
+function rerollMember(teamIndex, memberIndex) {
+  const team = teams[teamIndex];
+  if (!team) return;
+  const slot = team.members[memberIndex];
+  if (!slot || !slot.pending || !team.rerollAvailable) return;
+
+  // elegir personaje aleatorio diferente al actual
+  let newChar;
+  const available = characters.slice();
+  // remover el personaje actual si está en available
+  const current = slot.character;
+  if (current) {
+    const idx = available.indexOf(current);
+    if (idx !== -1) available.splice(idx,1);
+  }
+  newChar = available[Math.floor(Math.random() * available.length)];
+
+  slot.character = newChar;
+  slot.pending = false;
+  slot.locked = true;          // auto-confirm
+  team.rerollAvailable = false; // consume reroll
+
+  // registrar en historial (porque se auto-confirma)
+  pushHistory(newChar);
+
+  // avanzar puntero
+  advancePointerAfterAssignment();
+
+  waitingForConfirmation = false;
+  spinBtn.disabled = false;
+
+  renderTeams();
+  renderCarousel();
+  renderHistory();
+  checkAllTeamsComplete();
+  saveAllState();
+  // reproducir segmento de audio aleatorio si está habilitado
   playRandomAudioSegment();
-});
-
-// Agregar evento para reiniciar equipos al cambiar modo de asignación
-assignModeRadios.forEach(radio => {
-  radio.addEventListener("change", () => {
-    createTeams(parseInt(teamSizeInput.value, 10) || 3);
-  });
-});
-
-spinBtn.addEventListener("click", spin);
-
-// Evento para el botón MATCH
-matchButton.addEventListener("click", () => {
-  showWinnerSelection();
-  // Reproducir audio aleatorio al hacer clic en MATCH
-  playRandomAudioSegment();
-});
-
-// Evento para el botón de catálogo
-catalogBtn.addEventListener("click", () => {
-  // Guardar datos actuales en localStorage antes de ir al catálogo
-  localStorage.setItem('smashCharacters', JSON.stringify(charactersData));
-  window.location.href = 'catalog.html';
-});
-
-// Evento para cancelar selección de ganador
-cancelWinnerSelection.addEventListener("click", () => {
-  winnerSelection.classList.add("hidden");
-});
-
-// Menú de configuración
-configToggle.addEventListener("click", () => {
-  configContent.classList.toggle("show");
-});
-
-// Silenciar música
-toggleMusicBtn.addEventListener("click", () => {
-  musicMuted = !musicMuted;
-  if (musicMuted) {
-    backgroundMusic.pause();
-    toggleMusicBtn.textContent = "🔊 Activar Música";
-  } else {
-    backgroundMusic.play();
-    toggleMusicBtn.textContent = "🔇 Silenciar Música";
-  }
-});
-
-// Silenciar narrador
-toggleNarrationBtn.addEventListener("click", () => {
-  narrationMuted = !narrationMuted;
-  if (narrationMuted) {
-    toggleNarrationBtn.textContent = "🔊 Activar Narrador";
-  } else {
-    toggleNarrationBtn.textContent = "🔇 Silenciar Narrador";
-  }
-});
-
-// Silenciar audio aleatorio
-toggleRandomAudioBtn.addEventListener("click", () => {
-  randomAudioMuted = !randomAudioMuted;
-  if (randomAudioMuted) {
-    toggleRandomAudioBtn.textContent = "🔊 Activar Audio Aleatorio";
-  } else {
-    toggleRandomAudioBtn.textContent = "🔇 Silenciar Audio Aleatorio";
-  }
-});
-
-// Reiniciar página
-resetPageBtn.addEventListener("click", () => {
-  localStorage.removeItem('smashCharacters');
-  location.reload();
-});
-
-// --- calcular puntuación total del equipo ---
-function calculateTeamScore(team) {
-  return team.members.reduce((total, member) => {
-    return total + (member ? charactersData[member].score : 0);
-  }, 0);
 }
 
-// --- verificar si todos los equipos están completos ---
+// ------------------------
+// Confirmar: fija el slot y avanza
+// ------------------------
+function confirmAssignment(teamIndex, memberIndex) {
+  const team = teams[teamIndex];
+  if (!team) return;
+  const slot = team.members[memberIndex];
+  if (!slot || !slot.pending) return;
+
+  slot.pending = false;
+  slot.locked = true;
+  // guardar en historial
+  pushHistory(slot.character);
+
+  // avanzar puntero
+  advancePointerAfterAssignment();
+
+  waitingForConfirmation = false;
+  spinBtn.disabled = false;
+
+  renderTeams();
+  renderCarousel();
+  renderHistory();
+  checkAllTeamsComplete();
+  saveAllState();
+}
+
+// ------------------------
+// Avanzar puntero según modo (round o full)
+// ------------------------
+function advancePointerAfterAssignment() {
+  const teamSize = teams.length ? teams[0].members.length : 0;
+  const mode = [...assignModeRadios].find(r=>r.checked)?.value || "round";
+
+  if (mode === "round") {
+    currentTeamIndex = (currentTeamIndex + 1) % teams.length;
+    if (currentTeamIndex === 0) currentSlotIndex++;
+  } else { // full
+    currentSlotIndex++;
+    if (currentSlotIndex >= teamSize) {
+      currentSlotIndex = 0;
+      currentTeamIndex++;
+    }
+  }
+
+  // saltar automáticamente a la siguiente posición libre (si está bloqueada)
+  // findNextAvailableSlot usa currentTeamIndex/currentSlotIndex para ubicar el siguiente libre cuando se vuelva a spin.
+}
+
+// ------------------------
+// Verificar equipos completos
+// ------------------------
 function checkAllTeamsComplete() {
-  allTeamsComplete = teams.every(team => 
-    team.members.every(member => member !== null)
+  allTeamsComplete = teams.length > 0 && teams.every(team =>
+    team.members.every(slot => slot.locked) // completado sólo si todos los slots están locked
   );
-  
+
   if (allTeamsComplete) {
     spinBtn.disabled = true;
     matchButton.disabled = false;
   } else {
-    spinBtn.disabled = false;
+    spinBtn.disabled = waitingForConfirmation; // si hay pendiente, spin está deshabilitado
     matchButton.disabled = true;
   }
-  
   return allTeamsComplete;
 }
 
-// --- mostrar selección de equipo ganador ---
+// ------------------------
+// Mostrar selección de ganador (MATCH)
+// ------------------------
 function showWinnerSelection() {
   winnerSelection.classList.remove("hidden");
   teamButtons.innerHTML = "";
-  
   teams.forEach((team, index) => {
     const button = document.createElement("button");
     button.className = "team-winner-btn";
@@ -393,271 +613,108 @@ function showWinnerSelection() {
   });
 }
 
-// --- seleccionar equipo ganador ---
+// ------------------------
+// Seleccionar ganador: sumar puntos y bloquear match
+// ------------------------
 function selectWinner(teamIndex) {
   const winningTeam = teams[teamIndex];
-  
-  // Añadir punto de torneo a cada personaje del equipo ganador
-  winningTeam.members.forEach(member => {
-    if (member) {
-      charactersData[member].tournamentPoints += 1;
-    }
+  winningTeam.members.forEach(slot => {
+    if (slot.character) charactersData[slot.character].tournamentPoints += 1;
   });
-  
-  // Guardar cambios en localStorage
-  localStorage.setItem('smashCharacters', JSON.stringify(charactersData));
-  
-  // Reproducir audios de los personajes del equipo ganador
-  playCharacterAudios(winningTeam.members);
-  
-  // Ocultar selección de ganador
+  saveAllState();
+  // reproducir audios en orden
+  playCharacterAudios(winningTeam.members.map(m=>m.character));
+  // ocultar modal
   winnerSelection.classList.add("hidden");
-  
-  // Bloquear el botón MATCH nuevamente
+  // deshabilitar match
   matchButton.disabled = true;
-  
-  // Actualizar la visualización para mostrar los puntos de torneo
+  // actualizar vistas
   renderCarousel();
   renderTeams();
   renderHistory();
 }
 
-// --- reproducir audios de personajes en orden ---
+// reproducir audios de personajes (si existen)
 function playCharacterAudios(members) {
   if (narrationMuted) return;
-  
-  let index = 0;
-  
+  let idx = 0;
   function playNext() {
-    if (index < members.length) {
-      const character = members[index];
-      if (character) {
-        narradorAudio.src = `audio/${character}.mp3`;
-        narradorAudio.onended = playNext;
-        narradorAudio.play().catch(e => {
-          console.log("Error reproduciendo audio:", e);
-          playNext();
-        });
-      } else {
-        playNext();
-      }
-      index++;
-    }
+    if (idx >= members.length) return;
+    const name = members[idx];
+    idx++;
+    if (!name) return playNext();
+    narradorAudio.src = `audio/${name}.mp3`;
+    narradorAudio.onended = playNext;
+    narradorAudio.play().catch(()=>{ playNext(); });
   }
-  
   playNext();
 }
 
-// --- asignación ---
-function assignToTeamPending(name) {
-  const mode = [...assignModeRadios].find(r => r.checked)?.value || "round";
-  const team = teams[currentTeamIndex];
-  team.members[currentSlotIndex] = name;
-  team.pending = true;
-  team.lastAssigned = currentSlotIndex;
-  waitingForConfirmation = true;
-  renderTeams();
+// ------------------------
+// reproducir segmento aleatorio del audio largo (6s)
+// ------------------------
+function playRandomAudioSegment() {
+  if (!longAudioLoaded || randomAudioMuted) return;
+  const total = longAudio.duration || 720;
+  const seg = 6;
+  const maxStart = Math.max(0, total - seg);
+  const start = Math.random() * maxStart;
+  longAudio.currentTime = start;
+  longAudio.play().catch(()=>{});
+  setTimeout(()=> { try { longAudio.pause(); } catch(e){} }, seg*1000);
 }
 
-// --- reroll ---
-function rerollMember(teamIndex, memberIndex) {
-  const team = teams[teamIndex];
-  if (!team || !team.pending || !team.rerollAvailable) return;
-  const random = characters[Math.floor(Math.random() * characters.length)];
-  team.members[memberIndex] = random;
-  team.rerollAvailable = false;
-  team.pending = false; // Quitar el estado pendiente después del reroll
-  waitingForConfirmation = false;
-  
-  // Reproducir audio aleatorio al hacer reroll
+// ------------------------
+// Eventos
+// ------------------------
+generateTeamsBtn && generateTeamsBtn.addEventListener("click", () => {
+  const size = parseInt(teamSizeInput.value, 10) || 3;
+  createTeams(size);
   playRandomAudioSegment();
-  
-  spinBtn.disabled = false;
-  renderTeams();
-}
-
-// --- confirmar ---
-function confirmAssignment(teamIndex) {
-  const team = teams[teamIndex];
-  if (!team || !team.pending) return;
-  const memberIndex = team.lastAssigned;
-  const finalName = team.members[memberIndex];
-  pushHistory(finalName);
-  team.pending = false;
-  team.lastAssigned = -1;
-  waitingForConfirmation = false;
-
-  const teamSize = teams[0].members.length;
-  const mode = [...assignModeRadios].find(r => r.checked)?.value || "round";
-
-  if (mode === "round") {
-    currentTeamIndex = (currentTeamIndex + 1) % teams.length;
-    if (currentTeamIndex === 0) currentSlotIndex++;
-  } else {
-    currentSlotIndex++;
-    if (currentSlotIndex >= teamSize) {
-      currentSlotIndex = 0;
-      currentTeamIndex++;
-    }
-  }
-  
-  // Verificar si todos los equipos están completos
-  checkAllTeamsComplete();
-  
-  spinBtn.disabled = false;
-  renderTeams();
-}
-
-// --- historial ---
-function pushHistory(name) {
-  const div = document.createElement("div");
-  div.className = "history-item";
-  const img = document.createElement("img");
-  img.src = `images/${name}.png`;
-  img.alt = name;
-  
-  const p = document.createElement("p");
-  p.textContent = name.toUpperCase();
-  
-  const tierSpan = document.createElement("span");
-  tierSpan.className = "tier-text";
-  tierSpan.textContent = charactersData[name].tier;
-  
-  // Mostrar puntos de torneo (siempre, incluso cuando son 0)
-  const pointsSpan = document.createElement("span");
-  pointsSpan.className = "tournament-points";
-  pointsSpan.textContent = ` ⭐${charactersData[name].tournamentPoints}`;
-  p.appendChild(pointsSpan);
-  
-  p.appendChild(document.createTextNode(" "));
-  p.appendChild(tierSpan);
-  
-  div.appendChild(img);
-  div.appendChild(p);
-  historyDiv.prepend(div);
-}
-
-// --- renderizar historial completo ---
-function renderHistory() {
-  historyDiv.innerHTML = "";
-  // Recrear todo el historial para incluir puntos de torneo actualizados
-  // Nota: Esto es simplificado, en una implementación real necesitarías
-  // mantener un registro del historial de selecciones
-}
-
-// --- crear equipos ---
-function createTeams(size) {
-  const numTeams = parseInt(numTeamsInput.value, 10) || 2;
-  teams = [];
-  for (let i = 0; i < numTeams; i++) {
-    teams.push({
-      name: `Equipo ${i + 1}`,
-      members: Array(size).fill(null),
-      pending: false,
-      lastAssigned: -1,
-      rerollAvailable: true
-    });
-  }
-  currentTeamIndex = 0;
-  currentSlotIndex = 0;
-  waitingForConfirmation = false;
-  allTeamsComplete = false;
-  spinBtn.disabled = false;
-  matchButton.disabled = true;
-  winnerSelection.classList.add("hidden");
-  renderTeams();
-}
-
-// --- render equipos ---
-function renderTeams() {
-  teamsDiv.innerHTML = "";
-  teams.forEach((team, ti) => {
-    const div = document.createElement("div");
-    div.className = "team";
-    const h3 = document.createElement("h3");
-    h3.textContent = team.name;
-    div.appendChild(h3);
-    
-    // Mostrar puntuación total del equipo
-    const totalScore = document.createElement("div");
-    totalScore.className = "total-score";
-    totalScore.textContent = `PA: ${calculateTeamScore(team).toFixed(1)}`;
-    div.appendChild(totalScore);
-
-    team.members.forEach((member, mi) => {
-      const slot = document.createElement("div");
-      slot.className = "slot";
-      
-      if (member) {
-        const img = document.createElement("img");
-        img.src = `images/${member}.png`;
-        img.alt = member;
-        slot.appendChild(img);
-        
-        // Contenedor para información del personaje
-        const infoDiv = document.createElement("div");
-        infoDiv.className = "character-info";
-        
-        const nameSpan = document.createElement("div");
-        nameSpan.className = "character-name";
-        nameSpan.textContent = member.toUpperCase();
-        
-        const detailsDiv = document.createElement("div");
-        detailsDiv.className = "character-details";
-        
-        const tierSpan = document.createElement("div");
-        tierSpan.className = "character-tier";
-        tierSpan.innerHTML = `Tier: <span>${charactersData[member].tier}</span>`;
-        
-        const scoreSpan = document.createElement("div");
-        scoreSpan.className = "character-score";
-        scoreSpan.innerHTML = `PA: <span>${charactersData[member].score}</span>`;
-        
-        detailsDiv.appendChild(tierSpan);
-        detailsDiv.appendChild(scoreSpan);
-        
-        infoDiv.appendChild(nameSpan);
-        infoDiv.appendChild(detailsDiv);
-        
-        // Mostrar puntos de torneo (siempre, incluso cuando son 0)
-        const pointsDiv = document.createElement("div");
-        pointsDiv.className = "tournament-points";
-        pointsDiv.textContent = `Puntos de Torneo: ⭐${charactersData[member].tournamentPoints}`;
-        infoDiv.appendChild(pointsDiv);
-        
-        // Contenedor para botones (solo mostrar si es el último asignado y está pendiente)
-        if (team.pending && team.lastAssigned === mi) {
-          const buttonsContainer = document.createElement("div");
-          buttonsContainer.className = "buttons-container";
-          
-          if (rerollToggle.checked && team.rerollAvailable) {
-            const rerollBtn = document.createElement("button");
-            rerollBtn.textContent = "Reroll";
-            rerollBtn.onclick = () => rerollMember(ti, mi);
-            buttonsContainer.appendChild(rerollBtn);
-          }
-          
-          const confirmBtn = document.createElement("button");
-          confirmBtn.textContent = "Confirmar";
-          confirmBtn.onclick = () => confirmAssignment(ti);
-          buttonsContainer.appendChild(confirmBtn);
-          
-          infoDiv.appendChild(buttonsContainer);
-        }
-        
-        slot.appendChild(infoDiv);
-      } else {
-        const emptySpan = document.createElement("div");
-        emptySpan.className = "character-empty";
-        emptySpan.textContent = "Vacío";
-        slot.appendChild(emptySpan);
-      }
-      
-      div.appendChild(slot);
-    });
-    teamsDiv.appendChild(div);
+});
+assignModeRadios && Array.from(assignModeRadios).forEach(radio => {
+  radio.addEventListener("change", () => {
+    createTeams(parseInt(teamSizeInput.value, 10) || 3);
   });
-  
-  // Verificar si todos los equipos están completos
-  checkAllTeamsComplete();
-}
+});
+spinBtn && spinBtn.addEventListener("click", spin);
+matchButton && matchButton.addEventListener("click", () => {
+  showWinnerSelection();
+  playRandomAudioSegment();
+});
+catalogBtn && catalogBtn.addEventListener("click", () => {
+  saveCharacters();
+  window.location.href = 'catalog.html';
+});
+cancelWinnerSelection && cancelWinnerSelection.addEventListener("click", () => {
+  winnerSelection.classList.add("hidden");
+});
+configToggle && configToggle.addEventListener("click", () => configContent.classList.toggle("show"));
+toggleMusicBtn && toggleMusicBtn.addEventListener("click", () => {
+  musicMuted = !musicMuted;
+  if (musicMuted) { backgroundMusic.pause(); toggleMusicBtn.textContent = "🔊 Activar Música"; }
+  else { backgroundMusic.play().catch(()=>{}); toggleMusicBtn.textContent = "🔇 Silenciar Música"; }
+});
+toggleNarrationBtn && toggleNarrationBtn.addEventListener("click", () => {
+  narrationMuted = !narrationMuted;
+  toggleNarrationBtn.textContent = narrationMuted ? "🔊 Activar Narrador" : "🔇 Silenciar Narrador";
+});
+toggleRandomAudioBtn && toggleRandomAudioBtn.addEventListener("click", () => {
+  randomAudioMuted = !randomAudioMuted;
+  toggleRandomAudioBtn.textContent = randomAudioMuted ? "🔊 Activar Audio Aleatorio" : "🔇 Silenciar Audio Aleatorio";
+});
+resetPageBtn && resetPageBtn.addEventListener("click", () => {
+  localStorage.removeItem('smashCharacters');
+  location.reload();
+});
+
+// ------------------------
+// Inicialización
+// ------------------------
+(function init() {
+  // si en localStorage ya hay datos actualizados, los usamos
+  // (charactersData ya vino cargado arriba desde localStorage si existía)
+  renderCarousel();
+  renderTeams(); // inicialmente teams vacío hasta crear
+  renderHistory();
+})();

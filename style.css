@@ -278,7 +278,7 @@ h1 {
 }
 
 .premium-spin:hover:not(:disabled) {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.1) rotate(360deg);
   box-shadow: 0 0 35px #ff3333, 0 0 70px #ff9900;
 }
 
