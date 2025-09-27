@@ -438,22 +438,33 @@ function assignToTeamPending(name) {
 }
 
 // ------------------------
-// Spin (mantengo tu animación, pero llamo a assignToTeamPending al final)
+// Spin (MODIFICADO para giros más largos)
 // ------------------------
 function spin() {
   if (animating || waitingForConfirmation || allTeamsComplete) return;
   animating = true;
   spinBtn.disabled = true;
 
+  // MODIFICACIÓN: Asegurar un giro mínimo más largo
+  const minSpins = 3; // Mínimo de vueltas completas
+  const maxSpins = 8; // Máximo de vueltas completas
+  const spins = minSpins + Math.floor(Math.random() * (maxSpins - minSpins + 1));
+  
+  // Calcular el desplazamiento basado en vueltas completas + posición aleatoria
   const randomIndex = Math.floor(Math.random() * characters.length);
-  const targetItemIndex = randomIndex + characters.length * 2;
+  const totalItems = characters.length * 5; // Porque renderizamos 5 copias
+  const targetItemIndex = randomIndex + (characters.length * spins);
+  
+  // Asegurarnos de que no exceda el total de items
+  const adjustedTargetIndex = targetItemIndex % totalItems;
+  
   const containerWidth = document.querySelector(".roulette-container").offsetWidth;
   const offsetCenter = (containerWidth / 2) - (itemWidth / 2);
-  const finalOffset = - (targetItemIndex * itemWidth) + offsetCenter;
+  const finalOffset = - (adjustedTargetIndex * itemWidth) + offsetCenter;
 
   const startOffset = currentOffset;
   const distance = finalOffset - startOffset;
-  const duration = 3000;
+  const duration = 3000 + (spins * 500); // Duración proporcional a las vueltas
   const startTime = performance.now();
   document.querySelectorAll(".character").forEach(c => c.classList.remove("active"));
 
@@ -470,7 +481,10 @@ function spin() {
       currentOffset = finalOffset;
       const winner = characters[randomIndex];
       const allCharacters = document.querySelectorAll(".character");
-      const winnerDiv = allCharacters[randomIndex + characters.length * 2];
+      
+      // Encontrar el div ganador (puede estar en cualquier copia)
+      const winnerIndex = adjustedTargetIndex % characters.length;
+      const winnerDiv = allCharacters[adjustedTargetIndex];
       if (winnerDiv) winnerDiv.classList.add("active");
 
       // reproducir narrador si corresponde
